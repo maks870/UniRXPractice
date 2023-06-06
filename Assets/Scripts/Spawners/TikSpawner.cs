@@ -6,6 +6,7 @@ public class TikSpawner : MethodSpawner
 {
     private float tikTime;
     private float time = 0;
+    public new ReactiveCommand<float> upgradeCommand = new ReactiveCommand<float>();
 
 
     public TikSpawner(int spawnCount, float tikTime, Action<int> spawnAction) : base(spawnCount, spawnAction)
@@ -32,6 +33,6 @@ public class TikSpawner : MethodSpawner
     public override void Upgrade()
     {
         tikTime /= 2;
-        upgradeCommand.Execute();
+        upgradeCommand.Execute(tikTime);
     }
 }

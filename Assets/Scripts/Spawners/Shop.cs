@@ -21,9 +21,8 @@ public class Shop : MonoBehaviour
         spawner.TickSpawner.increaseCommand.Subscribe((value) => { shopUI.tickSpawnCount.text = value.ToString(); }).AddTo(disposable);
 
         shopUI.tickSpawnerUpgrade.OnClickAsObservable().Subscribe((value) => spawner.TickSpawner.Upgrade()).AddTo(disposable);
-        spawner.TickSpawner.upgradeCommand.Subscribe((unit) => { Debug.Log(unit.ToString()); Debug.Log(unit.GetType()); }).AddTo(disposable);
-
-
+        TikSpawner tikSpawner = (TikSpawner)spawner.TickSpawner;
+        tikSpawner.upgradeCommand.Subscribe((value) => { shopUI.tickTime.text = value.ToString(); }).AddTo(disposable);
     }
 
 }

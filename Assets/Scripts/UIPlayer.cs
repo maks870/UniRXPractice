@@ -16,7 +16,6 @@ public class UIPlayer : MonoBehaviour
         coinText.text = count.ToString();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
