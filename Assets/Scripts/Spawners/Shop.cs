@@ -8,7 +8,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private int increaseCost = 10;
     [SerializeField] private int increaseRise = 10;
     [SerializeField] private int upgradeCost = 10;
-    [SerializeField] private int upgradeRise = 10;
+    [SerializeField] private float upgradeMultiply = 2.5f;
 
     [Space(5)]
     [Header("Dependencies")]
@@ -40,7 +40,7 @@ public class Shop : MonoBehaviour
     {
         int coin = player.coinCount.Value;
 
-        if (coin - spendCount <= 0)
+        if (coin - spendCount < 0)
         {
             StopAllCoroutines();
             StartCoroutine(shopUI.NotifyLackCoin());
@@ -68,7 +68,7 @@ public class Shop : MonoBehaviour
             return;
 
         spawner.TickSpawner.Upgrade();
-        upgradeCost += upgradeRise;
+        upgradeCost = (int)(upgradeCost * upgradeMultiply);
         shopUI.tickSpawnerUpgrade.GetComponentInChildren<TextMeshProUGUI>().text = upgradeCost.ToString();
     }
 }
